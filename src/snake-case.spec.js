@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { snakeCase, snakeCaseKeys, recursivesnakeCaseKeys } from './snake-case.js'
+import { snakeCase, snakeCaseKeys, recursiveSnakeCaseKeys } from './snake-case.js'
 
 describe('snakeCase', () => {
   it('should convert object key like "firstName" to "first_name"', () => {
@@ -53,7 +53,7 @@ describe('invalid strings', () => {
 })
 
 describe('snakeCaseKeys', () => {
-  it.todo('should convert object keys to snakeCase', () => {
+  it('should convert object keys to snakeCase', () => {
     const aSymbol = Symbol()
     const expected = {
       'full_name': 'Foo Bar',
@@ -73,8 +73,8 @@ describe('snakeCaseKeys', () => {
   })
 })
 
-describe('recursivesnakeCaseKeys', () => {
-  it.todo('should convert object keys to snakeCase recursively', () => {
+describe('recursiveSnakeCaseKeys', () => {
+  it('should convert object keys to snakeCase recursively', () => {
     const expected = {
       full_name: { first_name: 'Foo', last_name: 'Bar' },
 
@@ -93,10 +93,10 @@ describe('recursivesnakeCaseKeys', () => {
       ]
     }
 
-    expect(recursivesnakeCaseKeys(object)).toMatchObject(expected)
+    expect(recursiveSnakeCaseKeys(object)).toMatchObject(expected)
   })
 
-  it.todo('should convert object keys from an array to snakeCase recursively', () => {
+  it('should convert object keys from an array to snakeCase recursively', () => {
     const expected = [
       { first_name: 'Xoo', last_name: 'Xar' },
       { first_name: 'Yoo', last_name: 'Yar' },
@@ -107,6 +107,6 @@ describe('recursivesnakeCaseKeys', () => {
       { firstName: 'Yoo', lastName: 'Yar' },
     ]
 
-    expect(recursivesnakeCaseKeys(object)).toMatchObject(expected)
+    expect(recursiveSnakeCaseKeys(object)).toMatchObject(expected)
   })
 })
