@@ -20,6 +20,6 @@ An ES6 module to handle string cases.
 - [x] camelCase
 - [x] snake_case
 - [ ] kebab-case
-- [ ] PascalCase
+- [x] PascalCase
 - [ ] CONSTANT_CASE
 - [ ] Travis CI 
