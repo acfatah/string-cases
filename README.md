@@ -21,5 +21,6 @@ An ES6 module to handle string cases.
 - [x] snake_case
 - [ ] kebab-case
 - [x] PascalCase
+- [x] capitalize
 - [ ] CONSTANT_CASE
 - [ ] Travis CI 
