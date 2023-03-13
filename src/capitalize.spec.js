@@ -9,3 +9,24 @@ describe('capitalizze', () => {
     expect(capitalize(string)).toBe(expected)
   })
 })
+
+describe('invalid strings', () => {
+  const notAStringValues = [
+    { type: 'undefined', value: undefined },
+    { type: 'null', value: null },
+    { type: 'number', value: 123 },
+    { type: 'symbol', value: Symbol() },
+    { type: 'array', value: [] },
+    { type: 'set', value: new Set },
+    { type: 'boolean', value: true },
+    { type: 'object', value: {} },
+    { type: 'function', value: () => {} },
+  ]
+
+  notAStringValues.forEach(({ type, value }) => {
+    it(`"${type}" should throw exceptions`, () => {
+      expect(() => capitalize(value)).toThrow(TypeError)
+      expect(() => capitalize(value)).toThrow('Expected argument to be of type string')
+    })
+  })
+})
