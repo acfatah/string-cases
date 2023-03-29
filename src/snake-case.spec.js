@@ -2,6 +2,13 @@ import { describe, it, expect } from 'vitest'
 import { snakeCase, snakeCaseKeys, recursiveSnakeCaseKeys } from './snake-case.js'
 
 describe('snakeCase', () => {
+  it('should return empty string on null', () => {
+    const expected = ''
+    const string = null
+
+    expect(snakeCase(string)).toBe(expected)
+  })
+
   it('should convert object key like "firstName" to "first_name"', () => {
     const expected = 'first_name'
     const string = 'firstName'
@@ -34,7 +41,6 @@ describe('snakeCase', () => {
 describe('invalid strings', () => {
   const notAStringValues = [
     { type: 'undefined', value: undefined },
-    { type: 'null', value: null },
     { type: 'number', value: 123 },
     { type: 'symbol', value: Symbol() },
     { type: 'array', value: [] },

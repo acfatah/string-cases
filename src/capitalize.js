@@ -1,7 +1,4 @@
-export const capitalize = string => {
-  if (typeof string !== 'string') {
-    throw new TypeError('Expected argument to be of type string')
-  }
+import { assertString } from './utils/assert-string'
 
-  return string.replace(/\b[a-z]/g, char => char.toUpperCase())
-}
+/** @param {string} string */
+export const capitalize = string => assertString(string).replace(/\b[a-z]/g, char => char.toUpperCase())

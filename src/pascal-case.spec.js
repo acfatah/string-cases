@@ -2,6 +2,13 @@ import { describe, it, expect } from 'vitest'
 import { pascalCase } from './pascal-case.js'
 
 describe('pascalCase', () => {
+  it('should return empty string on null', () => {
+    const expected = ''
+    const string = null
+
+    expect(pascalCase(string)).toBe(expected)
+  })
+
   it('should convert database table name like "admin_users" to "AdminUsers"', () => {
     const expected = 'AdminUsers'
     const string = 'admin_users'
@@ -34,7 +41,6 @@ describe('pascalCase', () => {
 describe('invalid strings', () => {
   const notAStringValues = [
     { type: 'undefined', value: undefined },
-    { type: 'null', value: null },
     { type: 'number', value: 123 },
     { type: 'symbol', value: Symbol() },
     { type: 'array', value: [] },

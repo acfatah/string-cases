@@ -2,6 +2,13 @@ import { describe, it, expect } from 'vitest'
 import { camelCase, camelCaseKeys, recursiveCamelCaseKeys  } from './camel-case.js'
 
 describe('camelCase', () => {
+  it('should return empty string on null', () => {
+    const expected = ''
+    const string = null
+
+    expect(camelCase(string)).toBe(expected)
+  })
+
   it('should convert database attribute like "first_name" to "firstName"', () => {
     const expected = 'firstName'
     const string = 'first_name'
@@ -34,7 +41,6 @@ describe('camelCase', () => {
 describe('invalid strings', () => {
   const notAStringValues = [
     { type: 'undefined', value: undefined },
-    { type: 'null', value: null },
     { type: 'number', value: 123 },
     { type: 'symbol', value: Symbol() },
     { type: 'array', value: [] },

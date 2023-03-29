@@ -1,7 +1,14 @@
 import { describe, it, expect } from 'vitest'
 import { capitalize } from './capitalize.js'
 
-describe('capitalizze', () => {
+describe('capitalize', () => {
+  it('should return empty string on null', () => {
+    const expected = ''
+    const string = null
+
+    expect(capitalize(string)).toBe(expected)
+  })
+
   it('shold capitalize string', () => {
     const expected = 'Lorem Ipsum Dolor Sit Amet'
     const string = 'lorem ipsum dolor sit amet'
@@ -13,7 +20,6 @@ describe('capitalizze', () => {
 describe('invalid strings', () => {
   const notAStringValues = [
     { type: 'undefined', value: undefined },
-    { type: 'null', value: null },
     { type: 'number', value: 123 },
     { type: 'symbol', value: Symbol() },
     { type: 'array', value: [] },

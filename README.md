@@ -23,5 +23,8 @@ An ES6 module to handle string cases.
 - [x] PascalCase
 - [x] capitalize
 - [ ] CONSTANT_CASE
-- [x] ~~Travis CI~~ circleci
-- [ ] standard style
+- [x] ~~Travis CI~~ CircleCI
+- [ ] StandardJs style
+- [x] ~~decide whether should throw error on null~~ turn null into an empty string
+
+[Code Climate Dashboard](https://codeclimate.com/github/acfatah/string-cases)
