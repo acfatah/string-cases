@@ -23,4 +23,5 @@ An ES6 module to handle string cases.
 - [x] PascalCase
 - [x] capitalize
 - [ ] CONSTANT_CASE
-- [ ] Travis CI 
+- [x] ~~Travis CI~~ circleci
+- [ ] standard style
