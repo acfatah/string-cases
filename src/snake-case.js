@@ -1,4 +1,6 @@
 import { assertString } from './utils/assert-string'
+import { objectWithInvalidKeys } from './utils/object-with-invalid-keys'
+import { transformKeys } from './utils/transform-keys'
 
 /** @param {string} string */
 export const snakeCase = string => assertString(string)
@@ -7,9 +9,7 @@ export const snakeCase = string => assertString(string)
   .toLowerCase()
 
 /** @param {Object} object */
-export const snakeCaseKeys = object => Object.keys(object).reduce(
-  (result, key) => Object.assign(result, { [snakeCase(key)]: object[key] }), {}
-)
+export const snakeCaseKeys = object => transformKeys(object, snakeCase)
 
 /**
  * @typedef {Object} NestedObject
@@ -18,12 +18,7 @@ export const snakeCaseKeys = object => Object.keys(object).reduce(
 
 /** @param {NestedObject} object */
 export const recursiveSnakeCaseKeys = object => {
-  if (
-    object == null
-    || typeof object !== 'object'
-    || object instanceof Date
-    || object instanceof RegExp
-  ) return object
+  if (objectWithInvalidKeys(object)) return object
 
   if (Array.isArray(object)) {
     return object.map(value => recursiveSnakeCaseKeys(value))
