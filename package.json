@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vitest",
-    "test": "vitest run"
+    "test": "npm run lint && vitest run",
+    "lint": "standard src"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/acfatah/string-cases#readme",
   "devDependencies": {
+    "standard": "^17.0.0",
     "vitest": "^0.29.2"
   }
 }
