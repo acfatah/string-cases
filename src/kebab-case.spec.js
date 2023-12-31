@@ -9,7 +9,7 @@ describe('kebabCase', () => {
     { expectedValue, actualValue: 'first_name' },
     { expectedValue, actualValue: 'firstName' },
     { expectedValue, actualValue: 'first name' },
-    { expectedValue, actualValue: 'First Name' },
+    { expectedValue, actualValue: 'First Name' }
   ]
 
   testCases.forEach(({ expectedValue, actualValue }) => {
