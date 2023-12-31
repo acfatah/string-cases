@@ -1,17 +1,13 @@
-/* eslint-disable no-multi-spaces */
-
-import { assertString } from './utils/assert-string'
+import { combineWords } from './utils/combine-words'
 import { transformKeys } from './utils/transform-keys'
 import { recursiveTransformKeys } from './utils/recursive-transform-keys'
 
+const SEPARATOR = '-'
+
 /** @param {string|null} string */
-export const kebabCase = string => assertString(string)
-  .trim()
-  .replace(/\B([A-Z])/g, '-$1') // Replace uppercase letters with added -
-  .replace(/\s+/g, '-')         // Replace spaces with -
-  .replace(/[^\w-]+/g, '')      // Remove all non-word chars
-  .replace(/_/g, '-')           // Replace _ with -
-  .replace(/--+/g, '-')         // Replace multiple - with single -
+export const kebabCase = string => combineWords(string, SEPARATOR)
+  .replace(/_/g, SEPARATOR)           // Replace _ with -
+  .replace(/--+/g, SEPARATOR)         // Replace multiple - with single -
   .replace(/-$/g, '')           // Remove trailing -
   .toLowerCase()
 
