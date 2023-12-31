@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { camelCase, camelCaseKeys, recursiveCamelCaseKeys  } from './camel-case.js'
+import { camelCase, camelCaseKeys, recursiveCamelCaseKeys } from './camel-case.js'
 
 describe('camelCase', () => {
   it('should return empty string on null', () => {
@@ -42,12 +42,12 @@ describe('invalid strings', () => {
   const notAStringValues = [
     { type: 'undefined', value: undefined },
     { type: 'number', value: 123 },
-    { type: 'symbol', value: Symbol() },
+    { type: 'symbol', value: Symbol('a symbol as an object key') },
     { type: 'array', value: [] },
-    { type: 'set', value: new Set },
+    { type: 'set', value: new Set() },
     { type: 'boolean', value: true },
     { type: 'object', value: {} },
-    { type: 'function', value: () => {} },
+    { type: 'function', value: () => {} }
   ]
 
   notAStringValues.forEach(({ type, value }) => {
@@ -60,18 +60,18 @@ describe('invalid strings', () => {
 
 describe('camelCaseKeys', () => {
   it('should convert object keys to camelCase', () => {
-    const aSymbol = Symbol()
+    const aSymbol = Symbol('a symbol as an object key')
     const expected = {
-      'fullName': 'Foo Bar',
+      fullName: 'Foo Bar',
       123: '123',
-      '456': '456',
+      '456': '456', // eslint-disable-line quote-props
       [aSymbol]: 'a symbol'
     }
 
     const object = {
-      'full_name': 'Foo Bar',
+      full_name: 'Foo Bar',
       123: '123',
-      '456': '456',
+      '456': '456', // eslint-disable-line quote-props
       [aSymbol]: 'a symbol'
     }
 
@@ -86,7 +86,7 @@ describe('recursiveCamelCaseKeys', () => {
 
       aliases: [
         { firstName: 'Xoo', lastName: 'Xar' },
-        { firstName: 'Yoo', lastName: 'Yar' },
+        { firstName: 'Yoo', lastName: 'Yar' }
       ]
     }
 
@@ -95,7 +95,7 @@ describe('recursiveCamelCaseKeys', () => {
 
       aliases: [
         { first_name: 'Xoo', last_name: 'Xar' },
-        { first_name: 'Yoo', last_name: 'Yar' },
+        { first_name: 'Yoo', last_name: 'Yar' }
       ]
     }
 
@@ -105,12 +105,12 @@ describe('recursiveCamelCaseKeys', () => {
   it('should convert object keys from an array to camelCase recursively', () => {
     const expected = [
       { firstName: 'Xoo', lastName: 'Xar' },
-      { firstName: 'Yoo', lastName: 'Yar' },
+      { firstName: 'Yoo', lastName: 'Yar' }
     ]
 
     const object = [
       { first_name: 'Xoo', last_name: 'Xar' },
-      { first_name: 'Yoo', last_name: 'Yar' },
+      { first_name: 'Yoo', last_name: 'Yar' }
     ]
 
     expect(recursiveCamelCaseKeys(object)).toMatchObject(expected)

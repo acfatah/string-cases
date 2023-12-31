@@ -44,10 +44,10 @@ describe('invalid strings', () => {
     { type: 'number', value: 123 },
     { type: 'symbol', value: Symbol() },
     { type: 'array', value: [] },
-    { type: 'set', value: new Set },
+    { type: 'set', value: new Set() },
     { type: 'boolean', value: true },
     { type: 'object', value: {} },
-    { type: 'function', value: () => { } },
+    { type: 'function', value: () => { } }
   ]
 
   notAStringValues.forEach(({ type, value }) => {
@@ -62,16 +62,16 @@ describe('snakeCaseKeys', () => {
   it('should convert object keys to snakeCase', () => {
     const aSymbol = Symbol()
     const expected = {
-      'full_name': 'Foo Bar',
+      full_name: 'Foo Bar',
       123: '123',
-      '456': '456',
+      '456': '456', // eslint-disable-line quote-props
       [aSymbol]: 'a symbol'
     }
 
     const object = {
-      'fullName': 'Foo Bar',
+      fullName: 'Foo Bar',
       123: '123',
-      '456': '456',
+      '456': '456', // eslint-disable-line quote-props
       [aSymbol]: 'a symbol'
     }
 
@@ -86,7 +86,7 @@ describe('recursiveSnakeCaseKeys', () => {
 
       aliases: [
         { first_name: 'Xoo', last_name: 'Xar' },
-        { first_name: 'Yoo', last_name: 'Yar' },
+        { first_name: 'Yoo', last_name: 'Yar' }
       ]
     }
 
@@ -95,7 +95,7 @@ describe('recursiveSnakeCaseKeys', () => {
 
       aliases: [
         { firstName: 'Xoo', lastName: 'Xar' },
-        { firstName: 'Yoo', lastName: 'Yar' },
+        { firstName: 'Yoo', lastName: 'Yar' }
       ]
     }
 
@@ -105,12 +105,12 @@ describe('recursiveSnakeCaseKeys', () => {
   it('should convert object keys from an array to snakeCase recursively', () => {
     const expected = [
       { first_name: 'Xoo', last_name: 'Xar' },
-      { first_name: 'Yoo', last_name: 'Yar' },
+      { first_name: 'Yoo', last_name: 'Yar' }
     ]
 
     const object = [
       { firstName: 'Xoo', lastName: 'Xar' },
-      { firstName: 'Yoo', lastName: 'Yar' },
+      { firstName: 'Yoo', lastName: 'Yar' }
     ]
 
     expect(recursiveSnakeCaseKeys(object)).toMatchObject(expected)

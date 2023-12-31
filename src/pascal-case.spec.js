@@ -44,10 +44,10 @@ describe('invalid strings', () => {
     { type: 'number', value: 123 },
     { type: 'symbol', value: Symbol() },
     { type: 'array', value: [] },
-    { type: 'set', value: new Set },
+    { type: 'set', value: new Set() },
     { type: 'boolean', value: true },
     { type: 'object', value: {} },
-    { type: 'function', value: () => {} },
+    { type: 'function', value: () => {} }
   ]
 
   notAStringValues.forEach(({ type, value }) => {
