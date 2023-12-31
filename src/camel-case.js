@@ -1,6 +1,6 @@
 import { assertString } from './utils/assert-string'
-import { objectWithInvalidKeys } from './utils/object-with-invalid-keys'
 import { transformKeys } from './utils/transform-keys'
+import { recursiveTransformKeys } from './utils/recursive-transform-keys'
 
 /** @param {string|null} string */
 export const camelCase = string => assertString(string)
@@ -16,16 +16,4 @@ export const camelCaseKeys = object => transformKeys(object, camelCase)
  */
 
 /** @param {NestedObject} object */
-export const recursiveCamelCaseKeys = object => {
-  if (objectWithInvalidKeys(object)) return object
-
-  if (Array.isArray(object)) {
-    return object.map(value => recursiveCamelCaseKeys(value))
-  }
-
-  return Object.keys(object).reduce((acc, key) => {
-    acc[camelCase(key)] = recursiveCamelCaseKeys(object[key])
-
-    return acc
-  }, {})
-}
+export const recursiveCamelCaseKeys = recursiveTransformKeys(camelCase)
