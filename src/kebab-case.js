@@ -2,13 +2,8 @@ import { combineWords } from './utils/combine-words'
 import { transformKeys } from './utils/transform-keys'
 import { recursiveTransformKeys } from './utils/recursive-transform-keys'
 
-const SEPARATOR = '-'
-
 /** @param {string|null} string */
-export const kebabCase = string => combineWords(string, SEPARATOR)
-  .replace(/_/g, SEPARATOR)           // Replace _ with -
-  .replace(/--+/g, SEPARATOR)         // Replace multiple - with single -
-  .replace(/-$/g, '')           // Remove trailing -
+export const kebabCase = string => combineWords(string, '-')
   .toLowerCase()
 
 /** @param {Object} object */
