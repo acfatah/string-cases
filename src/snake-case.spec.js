@@ -42,7 +42,7 @@ describe('invalid strings', () => {
   const notAStringValues = [
     { type: 'undefined', value: undefined },
     { type: 'number', value: 123 },
-    { type: 'symbol', value: Symbol() },
+    { type: 'symbol', value: Symbol('a symbol as an object key') },
     { type: 'array', value: [] },
     { type: 'set', value: new Set() },
     { type: 'boolean', value: true },
@@ -60,7 +60,7 @@ describe('invalid strings', () => {
 
 describe('snakeCaseKeys', () => {
   it('should convert object keys to snakeCase', () => {
-    const aSymbol = Symbol()
+    const aSymbol = Symbol('a symbol as an object key')
     const expected = {
       full_name: 'Foo Bar',
       123: '123',
