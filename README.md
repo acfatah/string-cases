@@ -12,7 +12,7 @@
 <a href="https://github.com/acfatah/string-cases/commits/main">
   <img alt="GitHub last commit (by committer)" src="https://img.shields.io/github/last-commit/acfatah/string-cases?display_timestamp=committer&style=flat-square"></a>
 
-<br>
+<br><br>
 
 An ES6 module to handle string cases.
 
@@ -23,7 +23,7 @@ An ES6 module to handle string cases.
 - [x] kebab-case, a.k.a slugify or hypernate
 - [x] PascalCase
 - [x] capitalize
-- [ ] CONSTANT_CASE
+- [x] CONSTANT_CASE
 - [x] ~~Travis CI~~ CircleCI
 - [x] StandardJs style
 - [x] ~~decide whether should throw error on null~~ turn null into an empty string
