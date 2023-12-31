@@ -1,6 +1,6 @@
 {
   "name": "@acfatah/string-cases",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "An example on how to publish an ES6 package to npm.",
   "main": "src/index.js",
   "type": "module",

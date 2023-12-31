@@ -27,7 +27,7 @@ An ES6 module to handle string cases.
 - [x] capitalize
 - [ ] CONSTANT_CASE
 - [x] ~~Travis CI~~ CircleCI
-- [ ] StandardJs style
+- [x] StandardJs style
 - [x] ~~decide whether should throw error on null~~ turn null into an empty string
 - [x] use cimg/node image for circleci
 
