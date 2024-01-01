@@ -1,21 +1,42 @@
-# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
 version: 2.1
 
-# Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
 # See: https://circleci.com/docs/orb-intro/
 orbs:
   node: circleci/node@4.7
 
-# Invoke jobs via workflows
+jobs:
+  test_with_coverage:
+    environment:
+      CC_TEST_REPORTER_ID: a2b8c9a6db8ef4a5a4134e7c93be6ddf212e3575f868d7862d3ecbe787245d08
+    docker:
+      - image: cimg/node:18.12.0
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: Run tests with coverage
+          command: npm run coverage
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            # download test reporter as a static binary
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
+      - run:
+          name: Send coverage report to Code Climate
+          command: |
+            # nyc report requires that nyc has already been run,
+            # which creates the .nyc_output folder containing necessary data
+            ./cc-test-reporter after-build -t lcov
+      # Upload results
+      - store_artifacts: # upload test coverage as artifact
+          path: ./coverage/lcov.info
+          prefix: tests
+
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  build_and_test: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  build_and_test:
     jobs:
-      - node/test:
-          # This is the node version to use for the `cimg/node` tag
-          # Relevant tags can be found on the CircleCI Developer Hub
-          # https://circleci.com/developer/images/image/cimg/node
-          version: '18.12'
-          # If you are using yarn, change the line below from "npm" to "yarn"
-          pkg-manager: npm
+      - test_with_coverage
